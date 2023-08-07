@@ -8,7 +8,15 @@ const { validateUser, validateToken, upload } = require("../../Middlewares");
 const { schemas } = require("../../Service/schemas/users");
 
 
-router.post("/register",   validateUser(schemas.registerSchema), ctrl.register);
+router.post("/register", validateUser(schemas.registerSchema), ctrl.register);
+
+router.get("/verify/:verificationToken", ctrl.verifyEmail);
+
+router.post(
+  "/Verify",
+  validateUser(schemas.verifyEmailSchema),
+  ctrl.resedVerify
+);
 
 router.get("/login",
   validateUser(schemas.loginSchema),
